@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="HtmlSanitizer" Version="8.0.692" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.WebApiCompatShim" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Microsoft.OpenApi" Version="1.4.3" />
+		<PackageReference Include="OwaspHeaders.Core" Version="4.5.1" />
+		<PackageReference Include="Scrutor" Version="4.2.0" />
+		<PackageReference Include="Serilog.Sinks.Http" Version="8.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="SixLaborsCaptcha.Mvc.Core" Version="0.2.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+
+		<PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Core\Core.csproj" />
+		
+		<ProjectReference Include="..\Services\School\Application\School.Application.csproj" />
+		<ProjectReference Include="..\Services\School\Domain\School.School.Domain.csproj" />
+		<ProjectReference Include="..\Services\School\Infrastructure\School.Infrastructure.csproj" />
+
+		<ProjectReference Include="..\Services\Transportation\Application\Application.csproj" />
+		<ProjectReference Include="..\Services\Transportation\Domain\School.Domain.csproj" />
+		<ProjectReference Include="..\Services\Transportation\Infrastructure\Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>
