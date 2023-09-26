@@ -11,8 +11,8 @@ public static class ServicesExtensions
     //    => services.AddTransient<FeatureFlagsMiddleware>();
 
     internal static void AddAutoMapperProfiles(
-        this IServiceCollection services)
-        => services.AddAutoMapper(typeof(StudentService), typeof(StudentMapping));
+        this IServiceCollection services, Assembly[] assemblies)
+        => services.AddAutoMapper(assemblies);
 
     internal static void AddSwagger(
         this IServiceCollection services,
@@ -241,15 +241,9 @@ public static class ServicesExtensions
         => services.AddTransient<ExceptionMiddleware>();
 
 
-    public static void AutoRegisterBusinessServices(this IServiceCollection services, Assembly assembly)
+    public static void AutoRegisterBusinessServices(this IServiceCollection services, Assembly[] assemblies)
     {
-
-        var x = services.Scan(scan => scan.FromCallingAssembly()
-                          .AddClasses(classes => classes.AssignableTo<IScopedService>())
-                              .AsImplementedInterfaces()
-                              .WithScopedLifetime());
-        Assembly[] assemblies = { assembly };
-
+ 
         services.Scan(scan => scan.FromAssemblies(assemblies)
                           .AddClasses(classes => classes.AssignableTo<IScopedService>())
                               .AsImplementedInterfaces()

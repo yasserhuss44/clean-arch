@@ -1,4 +1,5 @@
 ﻿
+using Apis.Extensions;
 using School.Application.Students;
 
 namespace Apis;
@@ -10,6 +11,7 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         //services.AddApiKey();
+        Assembly[] assemblies = { typeof(StudentService).Assembly, typeof(DriverService).Assembly };       
 
         services.RegisterGenericRepositoryAndUOW();
 
@@ -36,9 +38,7 @@ public static class DependencyInjection
 
         services.AddHttpClient();
 
-        services.AutoRegisterBusinessServices(typeof(StudentService).Assembly);
-        
-        services.AutoRegisterBusinessServices(typeof(DriverService).Assembly);
+        services.AutoRegisterBusinessServices(assemblies); 
 
         services.AddAuthorization(options =>
         {
@@ -47,9 +47,9 @@ public static class DependencyInjection
 
         services.AddJwtAuthentication(configuration);
 
-        services.AddAutoMapperProfiles();
+        services.AddAutoMapperProfiles(assemblies);
 
-       // services.AddFeatureFlags();
+        // services.AddFeatureFlags();
 
         services.AddResponseCompressionProviders();
 
