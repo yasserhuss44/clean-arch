@@ -16,6 +16,8 @@ namespace School.Infrastructure
                                                    options.UseSqlServer(connectionString));
 
             services.AddScoped(typeof(ISchoolUnitOfWork<>), typeof(SchoolUnitOfWork<>));
+
+
         }
     }
 }

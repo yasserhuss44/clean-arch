@@ -1,6 +1,4 @@
-﻿
-using Apis.Extensions;
-using School.Application.Students;
+﻿using School.Infrastructure.Integration.Transport;
 
 namespace Apis;
 
@@ -11,7 +9,7 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         //services.AddApiKey();
-        Assembly[] assemblies = { typeof(StudentService).Assembly, typeof(DriverService).Assembly };       
+        Assembly[] assemblies = { typeof(StudentService).Assembly, typeof(DriverService).Assembly, typeof(TransportProxy).Assembly };       
 
         services.RegisterGenericRepositoryAndUOW();
 

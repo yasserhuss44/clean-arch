@@ -1,15 +1,18 @@
 using School.Application.Students.DTOs;
+using School.Infrastructure.Integration.Transport;
 
 namespace School.Application.Students;
 public class StudentService : IStudentService
 {
     private readonly ISchoolUnitOfWork<SchoolDbContext> unitOfWork;
     private readonly IMapper mapper;
+    private readonly ITransportProxy transportProxy;
 
-    public StudentService(ISchoolUnitOfWork<SchoolDbContext> unitOfWork, IMapper mapper)
+    public StudentService(ISchoolUnitOfWork<SchoolDbContext> unitOfWork, IMapper mapper, ITransportProxy transportProxy)
     {
         this.unitOfWork = unitOfWork;
         this.mapper = mapper;
+        this.transportProxy = transportProxy;
     }
 
     public Task<PagedListDto<StudentDto>> SearchStudents(StudentFilter filter)
@@ -37,6 +40,9 @@ public class StudentService : IStudentService
         repository.Add(student);
 
         await unitOfWork.SaveChangesAsync();
+
+        if (dto.BusId.HasValue)
+            await this.transportProxy.ReserveBus(dto.BusId.Value);
 
         return await Task.FromResult(true);
     }

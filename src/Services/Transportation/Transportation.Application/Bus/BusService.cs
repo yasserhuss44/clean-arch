@@ -1,3 +1,4 @@
+using Humanizer;
 using Transportation.Application.Buses.DTOs;
 
 namespace Transportation.Application.Buses;
@@ -32,9 +33,9 @@ public class BusService : IBusService
     {
         var repository = unitOfWork.GetRepository<Bus>();
 
-        var student = mapper.Map<Bus>(dto);
+        var bus = mapper.Map<Bus>(dto);
 
-        repository.Add(student);
+        repository.Add(bus);
 
         await unitOfWork.SaveChangesAsync();
 
@@ -45,12 +46,12 @@ public class BusService : IBusService
     {
         var repository = unitOfWork.GetRepository<Bus>();
 
-        var student = await repository.GetByIdAsync(dto.Id);
+        var bus = await repository.GetByIdAsync(dto.Id);
 
-        student.Update(name: dto.Name,
+        bus.Update(name: dto.Name,
                        nameAr: dto.NameAr);
 
-        repository.Update(student);
+        repository.Update(bus);
 
         await unitOfWork.SaveChangesAsync();
 
@@ -61,13 +62,35 @@ public class BusService : IBusService
     {
         var repository = unitOfWork.GetRepository<Bus>();
 
-        var student = await repository.GetByIdAsync(id);
+        var bus = await repository.GetByIdAsync(id);
 
-        repository.Remove(student);
+        repository.Remove(bus);
 
         return await Task.FromResult(true);
 
     }
 
+    public async Task<bool> ReserveBus(Guid busId)
+    {
+        var repository = unitOfWork.GetRepository<Bus>();
+
+        var bus = await repository.GetByIdAsync(busId);
+
+        if (bus.IsNull())
+            throw new Exception("Buss not found");
+
+        bus.Reserve();
+
+        repository.Update(bus);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return await Task.FromResult(true);
+    }
+
+    public Task<IEnumerable<BusDto>> GetBuses()
+    {
+        throw new NotImplementedException();
+    }
 }
 

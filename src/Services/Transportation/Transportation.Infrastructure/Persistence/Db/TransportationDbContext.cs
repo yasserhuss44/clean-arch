@@ -20,7 +20,7 @@ public class TransportationDbContext : DbContext
 
 }
 
-//dotnet ef migrations add TransportationDbContext_InitialCreate  --context TransportationDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/Transportation/Transportation.Infrastructure  --verbose -o ./Persistence/Db/Migrations 
+//dotnet ef migrations add TransportationDbContext_AddReserveBus  --context TransportationDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/Transportation/Transportation.Infrastructure  --verbose -o ./Persistence/Db/Migrations 
 
 
 //dotnet ef database update               --context TransportationDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/Transportation/Transportation.Infrastructure  --verbose

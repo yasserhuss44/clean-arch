@@ -16,4 +16,7 @@ public interface IBusService : IScopedService
     
     Task<bool> CreateNewBus(CreateBusDto dto);
 
+    Task<bool> ReserveBus(Guid busId);
+
+    Task<IEnumerable<BusDto>> GetBuses();
 }
