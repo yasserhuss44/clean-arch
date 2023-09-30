@@ -1,9 +1,11 @@
 ﻿namespace Transportation.Domain.Entities;
 
-public class Driver : EntityBase<Guid>, IEntity<Guid>
+public class Driver : FullAuditedEntityBase<Guid>, IEntity<Guid>
 {
     public Driver()
     {
+        this.CreatedOn = DateTime.Now;
+        this.CreatedBy = "Yasser";
         this.Id = Guid.NewGuid();
     }
     public string Name { get; set; }

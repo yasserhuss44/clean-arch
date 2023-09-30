@@ -1,9 +1,7 @@
- 
-
-namespace Apis.Controllers;
+namespace Apis.Controllers.School;
 
 [ApiController]
-[Route("[controller]")]
+[Route("School/[controller]")]
 public class StudentController : BaseController
 {
 
@@ -15,11 +13,12 @@ public class StudentController : BaseController
         this.logger = logger;
         this.studentService = studentService;
     }
+
     [HttpGet(nameof(SearchStudents))]
     [ProducesResponseType(typeof(PagedListDto<StudentDto>), 200)]
     public async Task<IActionResult> SearchStudents(StudentFilter filter)
     {
-        var result = await this.studentService.SearchStudents(filter);
+        var result = await studentService.SearchStudents(filter);
 
         return Ok(result);
     }
@@ -28,25 +27,34 @@ public class StudentController : BaseController
     [ProducesResponseType(typeof(StudentDto), 200)]
     public async Task<IActionResult> GetStudent(Guid id)
     {
-        var result = await this.studentService.GetStudent(id);
+        var result = await studentService.GetStudent(id);
 
         return Ok(result);
     }
 
     [HttpPost(nameof(CreateNewStudent))]
     [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> CreateNewStudent(CreateStudentDto id)
+    public async Task<IActionResult> CreateNewStudent(CreateStudentDto dto)
     {
-        var result = await this.studentService.CreateNewStudent(id);
+        var result = await studentService.CreateNewStudent(dto);
 
         return Ok(result);
     }
 
-    [HttpPut(nameof(UpdateStudent))]
+    [HttpPut(nameof(UpdateStudentNames))]
     [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> UpdateStudent(UpdateStudentDto id)
+    public async Task<IActionResult> UpdateStudentNames(UpdateStudentDto dto)
     {
-        var result = await this.studentService.UpdateStudent(id);
+        var result = await studentService.UpdateStudentNames(dto);
+
+        return Ok(result);
+    }
+
+    [HttpPut(nameof(AssignStudentToGrade))]
+    [ProducesResponseType(typeof(bool), 200)]
+    public async Task<IActionResult> AssignStudentToGrade(AssignStudentToGradeDto dto)
+    {
+        var result = await studentService.AssignStudentToGrade(dto);
 
         return Ok(result);
     }
@@ -55,7 +63,7 @@ public class StudentController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> DeleteStudent(Guid id)
     {
-        var result = await this.studentService.DeleteStudent(id);
+        var result = await studentService.DeleteStudent(id);
 
         return Ok(result);
     }

@@ -1,9 +1,7 @@
- 
-
-namespace Apis.Controllers;
+namespace Apis.Controllers.Transportation;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Transportation/[controller]")]
 public class BusController : BaseController
 {
 
@@ -19,7 +17,7 @@ public class BusController : BaseController
     [ProducesResponseType(typeof(PagedListDto<BusDto>), 200)]
     public async Task<IActionResult> SearchBuses(BusFilter filter)
     {
-        var result = await this.studentService.SearchBuses(filter);
+        var result = await studentService.SearchBuses(filter);
 
         return Ok(result);
     }
@@ -28,7 +26,7 @@ public class BusController : BaseController
     [ProducesResponseType(typeof(BusDto), 200)]
     public async Task<IActionResult> GetBus(Guid id)
     {
-        var result = await this.studentService.GetBus(id);
+        var result = await studentService.GetBus(id);
 
         return Ok(result);
     }
@@ -37,7 +35,7 @@ public class BusController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> CreateNewBus(CreateBusDto id)
     {
-        var result = await this.studentService.CreateNewBus(id);
+        var result = await studentService.CreateNewBus(id);
 
         return Ok(result);
     }
@@ -46,7 +44,7 @@ public class BusController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> UpdateBus(UpdateBusDto id)
     {
-        var result = await this.studentService.UpdateBus(id);
+        var result = await studentService.UpdateBus(id);
 
         return Ok(result);
     }
@@ -55,7 +53,7 @@ public class BusController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> DeleteBus(Guid id)
     {
-        var result = await this.studentService.DeleteBus(id);
+        var result = await studentService.DeleteBus(id);
 
         return Ok(result);
     }

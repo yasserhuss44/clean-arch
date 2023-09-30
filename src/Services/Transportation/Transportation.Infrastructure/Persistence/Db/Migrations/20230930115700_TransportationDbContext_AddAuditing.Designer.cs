@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Transportation.Infrastructure.Persistence.Db;
 
@@ -11,9 +12,11 @@ using Transportation.Infrastructure.Persistence.Db;
 namespace Transportation.Infrastructure.Persistence.Db.Migrations
 {
     [DbContext(typeof(TransportationDbContext))]
-    partial class TransportationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230930115700_TransportationDbContext_AddAuditing")]
+    partial class TransportationDbContextAddAuditing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReservationStatusId")
+                    b.Property<int>("ReservationStatusId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -169,7 +172,9 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                 {
                     b.HasOne("Transportation.Domain.Entities.ReservationStatus", "ReservationStatus")
                         .WithMany()
-                        .HasForeignKey("ReservationStatusId");
+                        .HasForeignKey("ReservationStatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("ReservationStatus");
                 });

@@ -1,25 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Transportation\Transportation.Application\Transportation.Application.csproj" />
-    <ProjectReference Include="..\School.Domain\School.Domain.csproj" />
-	  <ProjectReference Include="..\..\..\Core\Core.csproj" />    
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\Core.csproj" />
+		<ProjectReference Include="..\School.Domain\School.Domain.csproj" />
+		<ProjectReference Include="..\..\Transportation\Transportation.Application\Transportation.Application.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EntityFramework" Version="6.4.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
+	</ItemGroup>
 
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 </Project>

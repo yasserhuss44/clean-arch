@@ -1,9 +1,11 @@
 ﻿namespace School.Domain.Entities;
 
-public class Course : EntityBase<Guid>, IEntity<Guid>
+public class Course : FullAuditedEntityBase<Guid>, IEntity<Guid>
 {
     public Course()
     {
+        this.CreatedOn = DateTime.Now;
+        this.CreatedBy = "Yasser";
         this.Id = Guid.NewGuid();
     }
     public string Name { get; set; }

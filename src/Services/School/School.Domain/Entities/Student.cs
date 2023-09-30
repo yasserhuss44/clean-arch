@@ -1,17 +1,25 @@
 ﻿namespace School.Domain.Entities;
 
-public class Student : EntityBase<Guid>, IEntity<Guid>
+public class Student : FullAuditedEntityBase<Guid>, IEntity<Guid>
 {
     public Student()
-    {
-        this.Id= Guid.NewGuid();
+    { 
+        this.Id = Guid.NewGuid();
     }
-    public string Name { get; set; }
-    public string NameAr { get; set; }
+    public string Name { get; private set; }
+    public string NameAr { get; private set; }
+    public int GradeId { get; private set; }
+    public Grade Grade { get; private set; }
 
-    public void Update(string name, string nameAr)
+    public void UpdateNames(string name, string nameAr)
     {
         this.Name = name;
         this.NameAr = nameAr;
     }
+
+    public void AssignToGrade(int grade)
+    {
+        this.GradeId = grade;
+    }
+
 }

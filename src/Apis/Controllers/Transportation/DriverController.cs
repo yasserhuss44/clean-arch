@@ -1,9 +1,7 @@
- 
-
-namespace Apis.Controllers;
+namespace Apis.Controllers.Transportation;
 
 [ApiController]
-[Route("[controller]")]
+[Route("Transportation/[controller]")]
 public class DriverController : BaseController
 {
 
@@ -19,7 +17,7 @@ public class DriverController : BaseController
     [ProducesResponseType(typeof(PagedListDto<DriverDto>), 200)]
     public async Task<IActionResult> SearchDrivers(DriverFilter filter)
     {
-        var result = await this.studentService.SearchDrivers(filter);
+        var result = await studentService.SearchDrivers(filter);
 
         return Ok(result);
     }
@@ -28,7 +26,7 @@ public class DriverController : BaseController
     [ProducesResponseType(typeof(DriverDto), 200)]
     public async Task<IActionResult> GetDriver(Guid id)
     {
-        var result = await this.studentService.GetDriver(id);
+        var result = await studentService.GetDriver(id);
 
         return Ok(result);
     }
@@ -37,7 +35,7 @@ public class DriverController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> CreateNewDriver(CreateDriverDto id)
     {
-        var result = await this.studentService.CreateNewDriver(id);
+        var result = await studentService.CreateNewDriver(id);
 
         return Ok(result);
     }
@@ -46,7 +44,7 @@ public class DriverController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> UpdateDriver(UpdateDriverDto id)
     {
-        var result = await this.studentService.UpdateDriver(id);
+        var result = await studentService.UpdateDriver(id);
 
         return Ok(result);
     }
@@ -55,7 +53,7 @@ public class DriverController : BaseController
     [ProducesResponseType(typeof(bool), 200)]
     public async Task<IActionResult> DeleteDriver(Guid id)
     {
-        var result = await this.studentService.DeleteDriver(id);
+        var result = await studentService.DeleteDriver(id);
 
         return Ok(result);
     }

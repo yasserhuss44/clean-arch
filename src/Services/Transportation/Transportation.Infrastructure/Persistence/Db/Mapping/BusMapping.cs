@@ -4,6 +4,8 @@ public class BusMapping : EntityTypeConfiguration<Bus>
     public override void Configure(EntityTypeBuilder<Bus> builder)
     {
         builder.ToTable(nameof(Driver), DBSchemaNames.Transportation.ToString());
+
+       // builder.HasQueryFilter(d => !d.IsDeleted); 
     }
 }
 

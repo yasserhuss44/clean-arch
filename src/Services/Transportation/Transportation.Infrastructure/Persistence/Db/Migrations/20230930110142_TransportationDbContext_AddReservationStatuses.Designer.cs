@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Transportation.Infrastructure.Persistence.Db;
 
@@ -11,9 +12,11 @@ using Transportation.Infrastructure.Persistence.Db;
 namespace Transportation.Infrastructure.Persistence.Db.Migrations
 {
     [DbContext(typeof(TransportationDbContext))]
-    partial class TransportationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230930110142_TransportationDbContext_AddReservationStatuses")]
+    partial class TransportationDbContextAddReservationStatuses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,17 +31,7 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("IsReserved")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -49,18 +42,7 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ReservationStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationStatusId");
 
                     b.ToTable("Bus", "Transportation");
                 });
@@ -71,19 +53,6 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -91,12 +60,6 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                     b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -163,15 +126,6 @@ namespace Transportation.Infrastructure.Persistence.Db.Migrations
                             NameAr = "غير محجوز",
                             NameEn = "Not Reserved"
                         });
-                });
-
-            modelBuilder.Entity("Transportation.Domain.Entities.Bus", b =>
-                {
-                    b.HasOne("Transportation.Domain.Entities.ReservationStatus", "ReservationStatus")
-                        .WithMany()
-                        .HasForeignKey("ReservationStatusId");
-
-                    b.Navigation("ReservationStatus");
                 });
 #pragma warning restore 612, 618
         }

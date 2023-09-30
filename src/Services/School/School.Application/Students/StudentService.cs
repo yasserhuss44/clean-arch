@@ -45,23 +45,7 @@ public class StudentService : IStudentService
             await this.transportProxy.ReserveBus(dto.BusId.Value);
 
         return await Task.FromResult(true);
-    }
-
-    public async Task<bool> UpdateStudent(UpdateStudentDto dto)
-    {
-        var repository = unitOfWork.GetRepository<Student>();
-
-        var student = await repository.GetByIdAsync(dto.Id);
-
-        student.Update(name: dto.Name,
-                       nameAr: dto.NameAr);
-
-        repository.Update(student);
-
-        await unitOfWork.SaveChangesAsync();
-
-        return await Task.FromResult(true);
-    }
+    } 
 
     public async Task<bool> DeleteStudent(Guid id)
     {
@@ -75,5 +59,35 @@ public class StudentService : IStudentService
 
     }
 
+    public async Task<bool> UpdateStudentNames(UpdateStudentDto dto)
+    {
+        var repository = unitOfWork.GetRepository<Student>();
+
+        var student = await repository.GetByIdAsync(dto.Id);
+
+        student.UpdateNames(name: dto.Name,
+                       nameAr: dto.NameAr);
+
+        repository.Update(student);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return await Task.FromResult(true);
+    }
+
+    public async Task<bool> AssignStudentToGrade(AssignStudentToGradeDto dto)
+    {
+        var repository = unitOfWork.GetRepository<Student>();
+
+        var student = await repository.GetByIdAsync(dto.StudentId);
+
+        student.AssignToGrade(dto.GradeId);
+
+        repository.Update(student);
+
+        await unitOfWork.SaveChangesAsync();
+
+        return await Task.FromResult(true);
+    }
 }
 

@@ -10,7 +10,7 @@ global using System.Threading.Tasks;
 global using Transportation.Domain.Entities;
 global using Core.Models;
 global using AutoMapper;
- global using Core.Interfaces;
+global using Core.Interfaces;
 global using FluentValidation;
 global using Core.Extensions;
 global using Core.Base;
