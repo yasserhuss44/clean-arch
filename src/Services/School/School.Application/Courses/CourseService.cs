@@ -12,58 +12,58 @@ public class CourseService : ICourseService
         this.mapper = mapper;
     }
 
-    public Task<PagedListDto<CourseDto>> SearchCourses(CourseFilter filter)
+    public Task<PagedListDto<CourseDto>> SearchCourses(CourseFilter filter, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<CourseDto> GetCourse(Guid id)
+    public async Task<CourseDto> GetCourse(Guid id, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Course>();
 
-        var entity = await repository.GetByIdAsync(id);
+        var entity = await repository.GetByIdAsync(id, cancellationToken);
 
         var dto = this.mapper.Map<CourseDto>(entity);
 
         return dto;
     }
 
-    public async Task<bool> CreateNewCourse(CreateCourseDto dto)
+    public async Task<bool> CreateNewCourse(CreateCourseDto dto, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Course>();
 
         var course = mapper.Map<Course>(dto);
 
-        repository.Add(course);
+        repository.Add(course, cancellationToken);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return await Task.FromResult(true);
     }
 
-    public async Task<bool> UpdateCourse(UpdateCourseDto dto)
+    public async Task<bool> UpdateCourse(UpdateCourseDto dto, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Course>();
 
-        var course = await repository.GetByIdAsync(dto.Id);
+        var course = await repository.GetByIdAsync(dto.Id , cancellationToken);
 
         course.Update(name: dto.Name,
                        nameAr: dto.NameAr);
 
-        repository.Update(course);
+        repository.Update(course, cancellationToken);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return await Task.FromResult(true);
     }
 
-    public async Task<bool> DeleteCourse(Guid id)
+    public async Task<bool> DeleteCourse(Guid id, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Course>();
 
-        var course = await repository.GetByIdAsync(id);
+        var course = await repository.GetByIdAsync(id, cancellationToken);
 
-        repository.Remove(course);
+        repository.Remove(course, cancellationToken);
 
         return await Task.FromResult(true);
 

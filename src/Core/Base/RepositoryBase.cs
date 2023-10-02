@@ -19,31 +19,31 @@ public class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : clas
         _dbSet = context.Set<TEntity>();
     }
 
-    public async Task<TEntity> GetByIdAsync(Guid id)
+    public async Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         return await _dbSet.FindAsync(id);
     }
-    public async Task<TEntity> GetByIdAsync(int id)
+    public async Task<TEntity> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await _dbSet.FindAsync(id);
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync()
+    public async Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await _dbSet.ToListAsync();
     }
 
-    public void Add(TEntity entity)
+    public void Add(TEntity entity, CancellationToken cancellationToken)
     {
         _dbSet.Add(entity);
     }
 
-    public void Update(TEntity entity)
+    public void Update(TEntity entity, CancellationToken cancellationToken)
     {
         _dbSet.Update(entity);
     }
 
-    public void Remove(TEntity entity)
+    public void Remove(TEntity entity, CancellationToken cancellationToken)
     {
         _dbSet.Remove(entity);
     }

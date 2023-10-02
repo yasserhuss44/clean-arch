@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace Apis.Controllers.Transportation;
 
 [ApiController]
@@ -15,45 +17,45 @@ public class DriverController : BaseController
     }
     [HttpGet(nameof(SearchDrivers))]
     [ProducesResponseType(typeof(PagedListDto<DriverDto>), 200)]
-    public async Task<IActionResult> SearchDrivers(DriverFilter filter)
+    public async Task<IActionResult> SearchDrivers(DriverFilter filter,CancellationToken cancellationToken)
     {
-        var result = await studentService.SearchDrivers(filter);
+        var result = await studentService.SearchDrivers(filter, cancellationToken);
 
         return Ok(result);
     }
 
     [HttpGet(nameof(GetDriver))]
     [ProducesResponseType(typeof(DriverDto), 200)]
-    public async Task<IActionResult> GetDriver(Guid id)
+    public async Task<IActionResult> GetDriver(Guid id, CancellationToken cancellationToken)
     {
-        var result = await studentService.GetDriver(id);
+        var result = await studentService.GetDriver(id, cancellationToken);
 
         return Ok(result);
     }
 
     [HttpPost(nameof(CreateNewDriver))]
     [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> CreateNewDriver(CreateDriverDto id)
+    public async Task<IActionResult> CreateNewDriver(CreateDriverDto id, CancellationToken cancellationToken)
     {
-        var result = await studentService.CreateNewDriver(id);
+        var result = await studentService.CreateNewDriver(id, cancellationToken);
 
         return Ok(result);
     }
 
     [HttpPut(nameof(UpdateDriver))]
     [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> UpdateDriver(UpdateDriverDto id)
+    public async Task<IActionResult> UpdateDriver(UpdateDriverDto id, CancellationToken cancellationToken)
     {
-        var result = await studentService.UpdateDriver(id);
+        var result = await studentService.UpdateDriver(id,cancellationToken);
 
         return Ok(result);
     }
 
     [HttpDelete(nameof(DeleteDriver))]
     [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> DeleteDriver(Guid id)
+    public async Task<IActionResult> DeleteDriver(Guid id, CancellationToken cancellationToken)
     {
-        var result = await studentService.DeleteDriver(id);
+        var result = await studentService.DeleteDriver(id,cancellationToken);
 
         return Ok(result);
     }

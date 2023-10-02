@@ -20,6 +20,6 @@ public class SchoolDbContext : DbContext
 
 }
 
-//dotnet ef migrations add SchoolDbContext_AddGrade  --context SchoolDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/School/School.Infrastructure  --verbose -o ./Persistence/Db/Migrations 
+//dotnet ef migrations add SchoolDbContext_AddGrade7  --context SchoolDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/School/School.Infrastructure  --verbose -o ./Persistence/Db/Migrations 
 
 //dotnet ef database update               --context SchoolDbContext  --startup-project ./Apis/Apis.csproj  --project ./Services/School/School.Infrastructure  --verbose

@@ -29,9 +29,9 @@ public class UnitOfWork<TContext> : IUnitOfWork<TContext> where TContext :  DbCo
         return (IRepository<TEntity>)_repositories[entityType];
     }
 
-    public async Task<int> SaveChangesAsync()
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
 
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 }

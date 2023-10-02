@@ -5,14 +5,14 @@ namespace School.Application.Courses;
 public interface ICourseService : IScopedService
 {
 
-    Task<PagedListDto<CourseDto>> SearchCourses(CourseFilter filter);
+    Task<PagedListDto<CourseDto>> SearchCourses(CourseFilter filter, CancellationToken cancellationToken);
 
-    Task<CourseDto> GetCourse(Guid id);
+    Task<CourseDto> GetCourse(Guid id, CancellationToken cancellationToken);
 
-    Task<bool> DeleteCourse(Guid id);
+    Task<bool> DeleteCourse(Guid id, CancellationToken cancellationToken);
 
-    Task<bool> UpdateCourse(UpdateCourseDto dto);
+    Task<bool> UpdateCourse(UpdateCourseDto dto, CancellationToken cancellationToken);
 
-    Task<bool> CreateNewCourse(CreateCourseDto dto);
+    Task<bool> CreateNewCourse(CreateCourseDto dto, CancellationToken cancellationToken);
 
 }

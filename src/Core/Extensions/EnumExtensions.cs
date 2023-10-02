@@ -57,6 +57,7 @@ public static class EnumExtensions
             {
                 nameAr = LocalizedAttribute.NameAr;
                 nameEn = LocalizedAttribute.NameEn;
+                
             }
 
             list.Add(new LookupEntityBase(val, nameAr, nameEn));

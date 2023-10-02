@@ -1,5 +1,4 @@
-﻿global using Core.Exceptions.Constants;
-global using Core.Extensions;
+﻿global using Core.Extensions;
 global using Core.Interfaces;
 global using Core.Base;
 global using Microsoft.EntityFrameworkCore;

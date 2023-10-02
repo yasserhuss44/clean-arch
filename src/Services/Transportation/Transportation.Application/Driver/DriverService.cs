@@ -12,58 +12,58 @@ public class DriverService : IDriverService
         this.mapper = mapper;
     }
 
-    public Task<PagedListDto<DriverDto>> SearchDrivers(DriverFilter filter)
+    public Task<PagedListDto<DriverDto>> SearchDrivers(DriverFilter filter ,CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<DriverDto> GetDriver(Guid id)
+    public async Task<DriverDto> GetDriver(Guid id, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Driver>();
 
-        var entity = await repository.GetByIdAsync(id);
+        var entity = await repository.GetByIdAsync(id, cancellationToken);
 
         var dto = this.mapper.Map<DriverDto>(entity);
 
         return dto;
     }
 
-    public async Task<bool> CreateNewDriver(CreateDriverDto dto)
+    public async Task<bool> CreateNewDriver(CreateDriverDto dto, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Driver>();
 
         var course = mapper.Map<Driver>(dto);
 
-        repository.Add(course);
+        repository.Add(course, cancellationToken);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return await Task.FromResult(true);
     }
 
-    public async Task<bool> UpdateDriver(UpdateDriverDto dto)
+    public async Task<bool> UpdateDriver(UpdateDriverDto dto, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Driver>();
 
-        var course = await repository.GetByIdAsync(dto.Id);
+        var course = await repository.GetByIdAsync(dto.Id, cancellationToken);
 
         course.Update(name: dto.Name,
                        nameAr: dto.NameAr);
 
-        repository.Update(course);
+        repository.Update(course, cancellationToken);
 
-        await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return await Task.FromResult(true);
     }
 
-    public async Task<bool> DeleteDriver(Guid id)
+    public async Task<bool> DeleteDriver(Guid id, CancellationToken cancellationToken)
     {
         var repository = unitOfWork.GetRepository<Driver>();
 
-        var course = await repository.GetByIdAsync(id);
+        var course = await repository.GetByIdAsync(id,cancellationToken);
 
-        repository.Remove(course);
+        repository.Remove(course, cancellationToken);
 
         return await Task.FromResult(true);
 

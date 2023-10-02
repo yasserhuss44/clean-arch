@@ -27,6 +27,7 @@ public class LookupEntityBase: EntityBase
         IsDeleted = false;
         IsActive = true;
         Description = nameAr;
+        CreatedOn = DateTime.Now;
     }
     public int Id { get; set; }
 

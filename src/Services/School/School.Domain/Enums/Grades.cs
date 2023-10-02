@@ -22,4 +22,6 @@ public enum Grades
 
     [LookupLocalization(nameAr: "الصف السادس", "Grade 6")]
     Six = 6,
+    [LookupLocalization(nameAr: "الصف السابع", "Grade 7")]
+    Seven = 7,
 }
