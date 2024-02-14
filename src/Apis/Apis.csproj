@@ -14,7 +14,7 @@
 		<PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1">
 			<TreatAsUsed>true</TreatAsUsed>
 		</PackageReference>
-		<PackageReference Include="HtmlSanitizer" Version="8.0.692" />
+		<PackageReference Include="HtmlSanitizer" Version="8.0.811" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0">
 			<TreatAsUsed>true</TreatAsUsed>
 		</PackageReference>
@@ -46,7 +46,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Core\Core.csproj" />
-		
+		<ProjectReference Include="..\Utilities\Logging.Har\Logging.Har.csproj" />
+ 		<ProjectReference Include="..\Shared.Web\Shared.Web.csproj" />
+
+
 		<ProjectReference Include="..\Services\School\School.Application\School.Application.csproj" />
 		<ProjectReference Include="..\Services\School\School.Domain\School.Domain.csproj" />
 		<ProjectReference Include="..\Services\School\School.Infrastructure\School.Infrastructure.csproj" />

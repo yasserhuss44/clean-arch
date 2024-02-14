@@ -38,4 +38,7 @@ public static class NdpClaimNames
     public const string EntityTypeId = "Ndp_EntityTypeId";
     public const string ProfileRoleTypeId = "Ndp_ProfileRoleTypeId";
     public const string ExternalUser = "Ndp_ExternalUser";
+    public const string CorrelationId = "Ndp_CorrelationId";
+
+    /*CorrelationId*/
 }

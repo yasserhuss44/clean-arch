@@ -1,0 +1,17 @@
+﻿global using Core.Constants;
+global using Core.Exceptions;
+global using Core.Exceptions.Constants;
+global using Core.Exceptions.Model;
+global using Core.Extensions;
+global using Core.Interfaces;
+global using Core.Models;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Http.Extensions;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Serilog;
+global using Shared.Web.Common;
+global using System.Text;
+global using AutoMapper;

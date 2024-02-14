@@ -47,6 +47,8 @@ public sealed class User
         }
     }
 
+    public string CorrelationId { get; set; } = Guid.NewGuid().ToString();
+
     public IEnumerable<Claim> Claims()
     {
         var claims = new List<Claim> {

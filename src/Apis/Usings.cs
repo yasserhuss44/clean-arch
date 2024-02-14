@@ -1,10 +1,6 @@
 ﻿global using Apis;
 global using Apis.Common;
-global using API;
-global using Apis.Extensions;
-global using API.Filters;
-global using API.Middleware; 
-global using Core;
+ global using Core;
 global using Core.Base;
 global using Core.Constants;
 global using Core.Exceptions;
@@ -52,8 +48,8 @@ global using Microsoft.AspNetCore.SignalR;
 global using Microsoft.EntityFrameworkCore;
 global using System;
 
-
-global using Transportation.Application;
+global using Shared.Web.Extensions;
+ global using Transportation.Application;
 global using Transportation.Application.Drivers;
 global using Transportation.Application.Drivers.DTOs;
 global using Transportation.Application.Buses;

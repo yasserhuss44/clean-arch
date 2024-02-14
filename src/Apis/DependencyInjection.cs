@@ -1,60 +1,32 @@
-﻿using School.Infrastructure.Integration.Transport;
-
+﻿ 
 namespace Apis;
 
 public static class DependencyInjection
 {
     internal static IServiceCollection AddWeb(
-        this IServiceCollection services ,
-        IConfiguration configuration)
+        this IServiceCollection services,
+        Assembly[]assemblies)
     {
         //services.AddApiKey();
-        Assembly[] assemblies = { typeof(StudentService).Assembly, typeof(DriverService).Assembly, typeof(TransportProxy).Assembly };       
 
-        services.RegisterGenericRepositoryAndUOW();
-
-        services.RegisterSchoolDBAndUnitOfWork(configuration);
-
-        services.RegisterTransportationDBAndUnitOfWork(configuration);
-
-        services.AddCore();
-
-        services.AddControllers(options =>
-                                options.Filters.Add<ApiExceptionFilterAttribute>());
-
-        services.AddSwagger(configuration);
-
-        services.AddHttpLogging(configuration);
-
-        services.AddCorsPolicy(configuration);
-
-        services.AddFluentValidation();
-
-        services.AddHttpContextAccessor();
-
-        services.AddCaptcha();
-
-        services.AddHttpClient();
-
-        services.AutoRegisterBusinessServices(assemblies); 
-
-        services.AddAuthorization(options =>
+        foreach (var assembly in assemblies)
         {
-  //          options.AddAuthorizationPolicies();
-        });
+            services.AddControllers()
+                       .AddApplicationPart(assembly);
 
-        services.AddJwtAuthentication(configuration);
+            services.AddAutoMapperProfiles(assembly);
 
-        services.AddAutoMapperProfiles(assemblies);
-
-        // services.AddFeatureFlags();
-
-        services.AddResponseCompressionProviders();
-
-        services.AddSanitizerMiddleware();
-
-        services.AddExceptionMiddleware();
-
+            services.AddFluentValidation(assembly);
+        }
         return services;
     }
+
+    internal static void AddAutoMapperProfiles(
+       this IServiceCollection services,Assembly assembly)
+       => services.AddAutoMapper(assembly);
+
+    internal static void AddFluentValidation(
+        this IServiceCollection services, Assembly assembly)
+        => services.AddValidatorsFromAssembly(assembly);
+ 
 }

@@ -13,4 +13,12 @@ public static class ErrorMessages
     public static readonly string Unhealthy = "server unhealthy";
 
     public static readonly string ActionNotAuthorized = "User is not authorized to perform this action";
+
+    public static readonly string CrmConnectionIssue = "Crm Connection Issue";
+    
+    public static readonly string Unknown = "Unknown Issue";
+
+    
+
+    
 }
