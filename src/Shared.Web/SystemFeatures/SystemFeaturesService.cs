@@ -21,17 +21,30 @@ public sealed class SystemFeaturesService :
         int category,
         CancellationToken cancellationToken = default)
     {
-        var features = new List<SystemFeatureItemDto> { new SystemFeatureItemDto {
-            Id= 1,
-            Name="Category"
-        } };
+        var features = new List<SystemFeatureItemDto>
+        {
+            new SystemFeatureItemDto 
+            {
+                Id= 1,
+                Name="Course",
+                SubFeatures= new List<SubSystemFeatureItemDto>
+                {
+                    new SubSystemFeatureItemDto
+                    {
+                        Id= 2,
+                        Name="CreateNewCourse",
+                    }
+                }
+                
+            }
+        };
         //await crmProxy.GetSystemFeaturesAsync(
         //        category ,
         //        cancellationToken);
 
         var systemFeatures = mapper.Map<List<SystemFeatureItemDto>>(features);
 
-        return systemFeatures;
+        return await Task.FromResult(systemFeatures);
 
     }
 

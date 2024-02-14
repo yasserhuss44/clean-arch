@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Logging.Har;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ using Shared.Web.Security.Authorization;
 using Shared.Web.Security.Services;
 using SixLaborsCaptcha.Mvc.Core;
 using System.IO.Compression;
+using System.Reflection;
 
 namespace Shared.Web.Extensions;
 
@@ -19,9 +21,9 @@ public static class ServicesExtensions
 {
     public static IServiceCollection AddSharedWebServices(
        this IServiceCollection services ,
+       Assembly[] assemblies,
        IConfiguration configuration)
     {
-      //  services.AddApplicationShared();
 
         services.AddApiKey();
 
@@ -58,8 +60,26 @@ public static class ServicesExtensions
 
         services.AddSanitizerMiddleware();
 
+        foreach (var assembly in assemblies)
+        {
+            services.AddControllers()
+                       .AddApplicationPart(assembly);
+
+            services.AddAutoMapperProfiles(assembly);
+
+            services.AddFluentValidation(assembly);
+        }
+
         return services;
     }
+
+    internal static void AddAutoMapperProfiles(
+   this IServiceCollection services, Assembly assembly)
+   => services.AddAutoMapper(assembly);
+
+    internal static void AddFluentValidation(
+        this IServiceCollection services, Assembly assembly)
+        => services.AddValidatorsFromAssembly(assembly);
 
     public static void AddApiKey(
         this IServiceCollection services)

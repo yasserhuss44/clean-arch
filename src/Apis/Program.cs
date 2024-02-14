@@ -6,10 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCore();
 
-builder.Services.AddSharedWebServices(builder.Configuration);
-
-builder.Services.AddWeb(assemblies);
-
+builder.Services.AddSharedWebServices(assemblies,builder.Configuration);
+ 
 builder.Host.AddConfigurations(args);
 
 builder.Host.AddSerilog();
