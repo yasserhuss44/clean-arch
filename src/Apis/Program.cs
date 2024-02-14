@@ -2,9 +2,7 @@ using School.Infrastructure.Integration.Transport;
 
 Assembly[] assemblies = { typeof(StudentService).Assembly, typeof(DriverService).Assembly, typeof(TransportProxy).Assembly };
 
-var builder = WebApplication.CreateBuilder(args);
-
-//builder.Services.AddInfrastructure();
+var builder = WebApplication.CreateBuilder(args); 
 
 builder.Services.AddCore();
 
