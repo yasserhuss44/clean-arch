@@ -9,10 +9,12 @@ public class CreateStudentDtoValidator : BaseFluentValidator<CreateStudentDto>
 
         RuleFor(x => x.NameAr)
             .Required()
+            .MinimumLength(6)
             .MaximumLength(100);
 
         RuleFor(x => x.Name)
             .Required()
+            .MinimumLength(6)
             .MaximumLength(100);
     }
 }

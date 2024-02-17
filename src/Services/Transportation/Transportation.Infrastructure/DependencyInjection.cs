@@ -5,6 +5,15 @@ namespace Transportation.Infrastructure
 {
     public static class DependencyInjection
     {
+        public static IServiceCollection AddTransportInfrastructure(
+                            this IServiceCollection services,
+                            IConfiguration configuration)
+        {
+            services.RegisterTransportationDBAndUnitOfWork(configuration);
+
+            return services;
+        }
+
         public static void RegisterTransportationDBAndUnitOfWork(
         this IServiceCollection services,
         IConfiguration configuration)

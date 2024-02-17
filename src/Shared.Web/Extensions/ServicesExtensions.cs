@@ -70,9 +70,27 @@ public static class ServicesExtensions
             services.AddFluentValidation(assembly);
         }
 
+        services.AutoRegisterBusinessServices(assemblies);
+
         return services;
     }
 
+    public static void AutoRegisterBusinessServices(
+    this IServiceCollection services, Assembly[] assemblies)
+    {
+        services.Scan(scan => scan.FromAssemblies(assemblies)
+                              .AddClasses(classes => classes.AssignableTo<IScopedService>())
+                                  .AsImplementedInterfaces()
+                                  .WithScopedLifetime()
+                              .AddClasses(classes => classes.AssignableTo<ITransientService>())
+                                  .AsImplementedInterfaces()
+                                  .WithTransientLifetime()
+                              .AddClasses(classes => classes.AssignableTo<ISingltonService>())
+                                  .AsImplementedInterfaces()
+                                  .WithSingletonLifetime());
+
+
+    }
     internal static void AddAutoMapperProfiles(
    this IServiceCollection services, Assembly assembly)
    => services.AddAutoMapper(assembly);
