@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transportation.Domain\Transportation.Domain.csproj" />
-	  <ProjectReference Include="..\..\..\Core\Core.csproj" />
+	  <ProjectReference Include="..\..\..\Core\Shared.Core.csproj" />
 	  <!--#endif-->
   </ItemGroup>
 
