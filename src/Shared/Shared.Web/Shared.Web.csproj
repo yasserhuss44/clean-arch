@@ -48,8 +48,8 @@
 
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Core\Shared.Core.csproj" />
-        <ProjectReference Include="..\Utilities\Logging.Har\Logging.Har.csproj" />
+        <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
+        <ProjectReference Include="..\Logging.Har\Logging.Har.csproj" />
      </ItemGroup>
 
 </Project>

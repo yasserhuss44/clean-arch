@@ -2,9 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transportation.Domain\Transportation.Domain.csproj" />
-	  <ProjectReference Include="..\..\..\Core\Shared.Core.csproj" />
-	  <!--#endif-->
-  </ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\Shared.Core\Shared.Core.csproj" />
+   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />

@@ -45,9 +45,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Core\Shared.Core.csproj" />
-		<ProjectReference Include="..\Utilities\Logging.Har\Logging.Har.csproj" />
- 		<ProjectReference Include="..\Shared.Web\Shared.Web.csproj" />
+		<ProjectReference Include="..\Shared\Shared.Core\Shared.Core.csproj" />
+		<ProjectReference Include="..\Shared\Logging.Har\Logging.Har.csproj" />
+ 		<ProjectReference Include="..\Shared\Shared.Web\Shared.Web.csproj" />
 
 
 		<ProjectReference Include="..\Services\School\School.Application\School.Application.csproj" />
