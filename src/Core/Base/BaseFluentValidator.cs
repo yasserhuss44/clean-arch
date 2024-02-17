@@ -13,7 +13,7 @@ public class BaseFluentValidator<T> : AbstractValidator<T>, IValidatorIntercepto
         ValidationResult result)
     {
         if (result.Errors != null && result.Errors.Any())
-            throw new Core.Exceptions.ValidationException(
+            throw new Exceptions.ValidationException(
                                       result.Errors, 
                                       "Invalid model: please fix the model issues and try again");
 
